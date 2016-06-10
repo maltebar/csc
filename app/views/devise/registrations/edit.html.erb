@@ -27,6 +27,18 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <h2>Notification Frequency</h2>
+    <p>Select from one of the options below:</p>
+    <%= f.radio_button :notificationFrequency, nil %>
+    <%= f.label("I do not want to receive notifications by email") %></br>
+    <%= f.radio_button :notificationFrequency, 1 %>
+    <%= f.label("I want to receive a single notification by email every time a new notifcation appears on my account") %></br>
+    <%= f.radio_button :notificationFrequency, 2 %>
+    <%= f.label("I want to receive a list of notifications for my account by email every 24 hours") %></br>
+  </div>
+
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

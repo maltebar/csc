@@ -4,8 +4,13 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
@@ -19,6 +24,17 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <h2>Notification Frequency</h2>
+    <p>Select from one of the options below (this can be changed in your profile preferences at any time):</p>
+    <%= f.radio_button :notificationFrequency, nil %>
+    <%= f.label("I do not want to receive notifications by email") %></br>
+    <%= f.radio_button :notificationFrequency, 1 %>
+    <%= f.label("I want to receive a single notification by email every time a new notifcation appears on my account") %></br>
+    <%= f.radio_button :notificationFrequency, 2 %>
+    <%= f.label("I want to receive a list of notifications for my account by email every 24 hours") %></br>
   </div>
 
   <div class="actions">

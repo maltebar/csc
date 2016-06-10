@@ -1,0 +1,40 @@
+li.successful a{
+	font-weight:bold;
+}
+
+li.unsuccessful a{
+	font-weight:normal;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 80px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 70px;
+  border-top-style: solid;
+  border-top-width: 10px;
+}
+
+ .navbar{
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+}
+
+
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+

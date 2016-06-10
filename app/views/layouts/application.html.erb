@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Csc</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>Dh</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<nav class="navbar navbar-inverse navbar-static-top">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<%= link_to "Secret Life of Slaves", assignments_path, class:'navbar-brand' %>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">      
+		<ul class="nav navbar-nav">
+			<!--navbar links go here-->
+		</ul>
+	
+	<ul class="nav navbar-nav navbar-right">
+		<% if user_signed_in? %>
+		<li>
+		  <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
+	  </li>
+	  <% end %>
+  </ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+	<%= yield %>
+</div>
+<footer class="footer">
+  <div class="container">
+	<p class="text-muted">Please contact <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a> with any questions</p>
+</div>
+</footer>
 </body>
 </html>
