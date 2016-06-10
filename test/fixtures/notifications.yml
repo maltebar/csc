@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipient_id: 1
+  creator_id: 1
+  action: MyString
+  url: MyString
+
+two:
+  recipient_id: 1
+  creator_id: 1
+  action: MyString
+  url: MyString

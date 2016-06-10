@@ -1,0 +1,44 @@
+Hello, 
+      If your account has new notifications, they will be lised below.
+      Please visit the course website at: <%= @url %>
+      Or you can follow the links provided by the notifications.
+      
+      Thanks!
+
+        <% if @recipient.notificationFrequency == 2 && @recipient.admin == false %>
+          List of Notifications (past 24 hours): 
+          <% i = 0 %>
+          <% @notifications.each do |x| %>
+            <% if x.recipient_id == @recipient.id && x.created_at >= 1.day.ago %>
+              <% i += 1 %>
+              <%= i %>.
+              <%= x.action %> -- 
+              <%= x.url %>
+              
+
+            <% end %>
+          <% end %>
+        <% elsif @recipient.notificationFrequency == 1 && @recipient.admin == false %>
+          New Notification:
+          <% @notifications.reverse.each do |x| %>
+            <% if x.recipient_id == @recipient.id %>
+              <%= x.action %> --
+              <%= x.url %>
+              <% break %>
+            <% end %>
+          <% end %>
+        <% elsif @recipient.admin == true %> 
+          List of all Notifications (past 24 hours):
+          <% i = 0 %>
+          <% @notifications.each do |x| %>
+            <% if x.created_at >= 1.day.ago %>
+              <% i += 1 %>
+              <%= i %>. User ID  
+              <%= x.recipient_id %> --
+              <%= x.action %> -- 
+              <%= x.url %>
+              
+
+            <% end %>
+          <% end %>
+        <% end %>
