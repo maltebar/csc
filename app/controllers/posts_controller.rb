@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @assignment = Assignment.find(@post.assignment_id)
     @group_members = User.where(group_id: User.find(current_user.id).group_id)
+    @comments = Comment.where(post_id: @post.id)
   end
 
   # GET /posts/new

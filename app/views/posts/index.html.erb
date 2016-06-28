@@ -15,7 +15,11 @@
         <%@posts.where(assignment_id: assignment.id).each do |post|%>
           <tr>
             <td>
-              <%= link_to post.user.name, post_path(post), :class=> "btn btn-link"%>
+              <%if current_user.admin?%>
+                <%= link_to post.user.name, post_path(post), :class=> "btn btn-link"%>
+              <%else%>
+                <%= link_to post.user.nickname, post_path(post), :class=> "btn btn-link"%>
+              <%end%>
             </td>
             <td>
               count
