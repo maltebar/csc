@@ -1,12 +1,22 @@
 <div class="col-md-8">
 	<div class="page-header">
-		<h1><%= @assignment.title %></h1>
+		<h1><%= @assignment.title %>		
+			<%if @post.user == current_user%>
+				<button type="button" class="btn btn-primary pull-right view" id='edit'>
+				Edit Post
+				</button>
+			<%end%>
+		</h1>
 		<h5 style="color:red"><%= @assignment.draft_due.strftime("%A, %B %d at %I:%M %p")%></h5>
 		<h5 style="color:red"><%= @assignment.final_due.strftime("%A, %B %d at %I:%M %p")%></h5>
 		<h5>by: <%= @post.user.nickname %></h5>
+
 	</div>
-	<div class="well well-lg">
+	<div class="well well-lg view">
 		<%=@post.content.html_safe%>
+	</div>
+	<div class="well well-lg edit" style="display:none;">
+		<%=render 'form'%>
 	</div>
 </div>
 
@@ -26,7 +36,7 @@
 
 	<div style="height: 400px; overflow: scroll">
 		<%@comments.each do |comment|%>
-			<div class="well well-lg">
+			<div class="well well-sm">
 				<%=comment.content.html_safe%>
 				<br>
 				<h5>by: <%= comment.user.nickname %></h5>
@@ -42,3 +52,20 @@
 		<%end%>
 	</div>
 </div>
+
+<script>
+	function editStep(){
+		$(".view").hide();
+		$(".edit").show();
+	}
+	function viewStep(){
+		$(".edit").hide();
+		$(".view").show();
+	}
+	$(function(){
+		$("#edit").click(function(event){
+			event.preventDefault();
+			editStep();
+		});	
+	});
+</script>

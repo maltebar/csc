@@ -1,15 +1,7 @@
-
-<h1><%=@assignment.title%></h1>
-<h3>By: <%=current_user.name%></h3>
-<br>
 <div class="assignmentcontent">
   <%=@assignment.description.html_safe%>
 </div>
-
-<% else %>
-<div class='row'>
-  <div class='col-md-6'>
-    <%= form_for(@post) do |f| %>
+<%= form_for(@post) do |f| %>
     <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -29,7 +21,7 @@
 
     <div class="form-group">
         <%= f.label :content, class:'control-label sr-only' %><br>
-        <%= f.text_area :content, class:'form-control', rows:8, class:'form-control' %>
+        <%= f.bootsy_area :content, class:'form-control' %>
     </div>
 
       <%= f.hidden_field :user_id, value: current_user.id%>
@@ -39,10 +31,4 @@
       <%= f.submit "Save", class:'btn btn-primary' %> <%= link_to "Cancel", @presentation, class: 'btn btn-link' %>
     </div>
     <% end %>
-  </div>
-
-
-
-</div>
-
-
+  

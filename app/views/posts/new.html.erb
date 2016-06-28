@@ -1,4 +1,9 @@
-<h1>New Post</h1>
+
+<h1><%=@assignment.title%></h1>
+<h3>By: <%=current_user.name%></h3>
+<br>
+
+
 
 <%= render 'form', :collection => @assignment %>
 

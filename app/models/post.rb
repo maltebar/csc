@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+	include Bootsy::Container
 	belongs_to :user
 	belongs_to :assignment
 	after_create :notify
