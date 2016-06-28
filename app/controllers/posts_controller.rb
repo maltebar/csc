@@ -15,6 +15,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @assignment = Assignment.find(@post.assignment_id)
+    @group_members = User.where(group_id: User.find(current_user.id).group_id)
   end
 
   # GET /posts/new
