@@ -4,7 +4,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
-    @assignments = Assignment.all
+    @assignments = Assignment.all.order(:draft_due)
+    @notifications = Notification.where(recipient: current_user)
   end
 
   # GET /assignments/1

@@ -1,18 +1,25 @@
-<div class='page-header'>
-  <h1>Assignments</h1>
+<div class='page-header clearfix'>
+  <h1 class='col-md-6'>
+    <span>Assignments</span>
+    <%if current_user.admin?%>
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newAssignmentForm">
+        Create new assignment
+      </button>
+    <%end%>
+  </h1>
+  <h1 class='col-md-6'>
+    Notifications
+  </h1>
 </div>
 
-<%if current_user.admin?%>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAssignmentForm">
-  Create new assignment
-</button>
-<%end%>
 
+
+
+<div class="col-md-6">
 <table class='table'>
   <thead>
     <tr>
       <th>Assignment Title</th>
-      <th>Description</th>
       <th>Draft Due Date</th>
       <th>Final Due Date</th>
       <% if current_user.admin? %>
@@ -30,18 +37,15 @@
           <%= assignment.title %>
         </td>
         <td>
-          <%= assignment.description.html_safe %>
-        </td>
-        <td>
           <%= assignment.draft_due.strftime("%A, %B %d at %I:%M %p") %>
         </td>
         <td>
           <%= assignment.final_due.strftime("%A, %B %d at %I:%M %p") %>
         </td>
-        <td>
-          
-        </td>
         <% if current_user.admin? %>
+          <td>
+            student submissions
+          </td>
           <td>
              <%= link_to 'Edit', edit_assignment_path(assignment) %><br>
              <%= link_to 'Delete', assignment, method: :delete %>
@@ -55,7 +59,11 @@
       <% end %>
     </tbody>
 </table>
+</div>
 
+<div class="col-md-6">
+  <%= render 'notifications/notificationlist', :collection => @notifications%>
+</div>
 
 
 
