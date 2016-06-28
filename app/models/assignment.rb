@@ -3,7 +3,7 @@ class Assignment < ActiveRecord::Base
 	after_create :notify
 
 	def notify
-		url = Rails.application.routes.url_helpers.assignment_path(self)
+		url = Rails.application.routes.url_helpers.assignments_path
 		@users = User.all 
 		@users.each do |u| 
   			Notification.create(recipient: u, action: "New Assignment Posted", url: url)

@@ -6,5 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+Group.create()
+
+
 User.create(name: 'Maria', email: 'maltebar@brandeis.edu', password: '12345678', admin: true)
 User.create(name: 'Betty', email: 'betty@brandeis.edu', password: '12345678', admin: false)
