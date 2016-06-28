@@ -5,6 +5,11 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    if !params[:assignment_id].present?
+      @assignments = Assignment.all
+    else
+      @assignments = Assignment.where(id: params[:assignment_id])
+    end
   end
 
   # GET /posts/1
@@ -15,10 +20,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @assignment = Assignment.find(params[:assignment_id])
   end
 
   # GET /posts/1/edit
   def edit
+    @assignment = Assignment.find(params[:assignment_id])
   end
 
   # POST /posts

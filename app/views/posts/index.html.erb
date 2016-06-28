@@ -1,25 +1,39 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
+<%@assignments.each do |assignment|%>
+  <h1>Posts For Assignment: <%=assignment.title%></h1>
+  <table class='table'>
+    <thead>
       <tr>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Post Author</th>
+        <th>Good Design</th>
+        <th>Good Use of Examples</th>
+        <th>Well-Written</th>
+        <th>Good Reflection Statement</th>
+        <th>Number of Reads</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+    </thead>
+    <tbody>
+        <%@posts.where(assignment_id: assignment.id).each do |post|%>
+          <tr>
+            <td>
+              <%= link_to post.user.name, post_path(post), :class=> "btn btn-link"%>
+            </td>
+            <td>
+              count
+            </td>
+            <td>
+              count
+            </td>
+            <td>
+              count
+            </td>
+            <td>
+              count
+            </td>
+            <td>
+              count
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+<%end%>

@@ -23,10 +23,7 @@
       <th>Draft Due Date</th>
       <th>Final Due Date</th>
       <% if current_user.admin? %>
-        <th>View Student Submissions</th>
         <th>Edit</th>
-      <% else %>
-        <th>Go to Assignment</th>
       <% end %>
     </tr>
   </thead>
@@ -34,7 +31,16 @@
     <% @assignments.each do |assignment| %>
       <tr>
         <td>
-          <%= assignment.title %>
+          <%if current_user.admin?%>
+             <%= link_to assignment.title, {:controller => "posts", :action => "index", :assignment_id => assignment.id }, :class=> "btn btn-link"%>
+          <%else%>
+            <% @post = Post.where(user_id: current_user, assignment_id: assignment.id)%>
+            <%if @post.exists? %>
+              <%= link_to assignment.title, {:controller => "posts", :action => "show", :id => @post.first.id, :assignment_id => assignment.id }, :class=> "btn btn-link"%>
+            <%else%>
+              <%= link_to assignment.title, {:controller => "posts", :action => "new", :assignment_id => assignment.id }, :class=> "btn btn-link"%>      
+            <%end%>
+          <%end%>
         </td>
         <td>
           <%= assignment.draft_due.strftime("%A, %B %d at %I:%M %p") %>
@@ -44,15 +50,8 @@
         </td>
         <% if current_user.admin? %>
           <td>
-            student submissions
-          </td>
-          <td>
              <%= link_to 'Edit', edit_assignment_path(assignment) %><br>
              <%= link_to 'Delete', assignment, method: :delete %>
-          </td>
-        <%else%>
-          <td>
-            Link to write a post here.
           </td>
         <% end %>
       </tr>
