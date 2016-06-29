@@ -20,5 +20,5 @@ Group.create()
 Group.create()
 
 
-User.create(name: 'Maria', email: 'maltebar@brandeis.edu', password: '12345678', admin: true)
-User.create(name: 'Betty', email: 'betty@brandeis.edu', password: '12345678', admin: false)
+User.create(name: 'Maria', email: 'maltebar@brandeis.edu', nickname:"Maria", password: '12345678', admin: true)
+User.create(name: 'Betty', email: 'betty@brandeis.edu', nickname:'Bets', password: '12345678', admin: false)

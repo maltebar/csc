@@ -2,33 +2,35 @@
   <%=@assignment.description.html_safe%>
 </div>
 <%= form_for(@post) do |f| %>
-    <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  <% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+    <div>
+      <%= f.hidden_field :assignment_id, value: @assignment.id%>
     </div>
-    <% end %>
-    <div class="field">
-      <div>
-        <%= f.hidden_field :assignment_id, value: @assignment.id%>
-      </div>
-    </div>
+  </div>
 
-    <div class="form-group">
-        <%= f.label :content, class:'control-label sr-only' %><br>
-        <%= f.bootsy_area :content, class:'form-control', :style=>"height:1000px;" %>
-    </div>
+  <div class="form-group">
+      <%= f.label :content, class:'control-label sr-only' %><br>
+      <%= f.bootsy_area :content, class:'form-control', :style=>"height:1000px;" %>
+  </div>
 
-      <%= f.hidden_field :user_id, value: current_user.id%>
+    <%= f.hidden_field :user_id, value: current_user.id%>
 
 
-    <div class="form-group">
-      <%= f.submit "Save", class:'btn btn-primary' %> 
-    </div>
-    <% end %>
+  <div class="form-group">
+    <%= f.submit "Save", class:'btn btn-primary', id:'save' %> 
+  </div>
+<% end %>
+
+
   
