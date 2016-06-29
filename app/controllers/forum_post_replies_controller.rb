@@ -28,7 +28,7 @@ class ForumPostRepliesController < ApplicationController
 
     respond_to do |format|
       if @forum_post_reply.save
-        format.html { redirect_to @forum_post_reply, notice: 'Forum post reply was successfully created.' }
+        format.html { redirect_to :back, notice: 'Forum post reply was successfully created.' }
         format.json { render :show, status: :created, location: @forum_post_reply }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ForumPostRepliesController < ApplicationController
   def update
     respond_to do |format|
       if @forum_post_reply.update(forum_post_reply_params)
-        format.html { redirect_to @forum_post_reply, notice: 'Forum post reply was successfully updated.' }
+        format.html { redirect_to :back , notice: 'Forum post reply was successfully updated.' }
         format.json { render :show, status: :ok, location: @forum_post_reply }
       else
         format.html { render :edit }

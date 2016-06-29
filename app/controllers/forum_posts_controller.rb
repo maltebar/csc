@@ -5,6 +5,11 @@ class ForumPostsController < ApplicationController
   # GET /forum_posts.json
   def index
     @forum_posts = ForumPost.all.order(created_at: :desc)
+    if !ForumPost.where(id: params[:forum_post_id]).blank?
+      @forum_post = ForumPost.find(params[:forum_post_id])
+    else
+      @forum_post = nil
+    end 
   end
 
   # GET /forum_posts/1

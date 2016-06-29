@@ -9,12 +9,37 @@
 <div class="col-md-4">
   <div class="list-group">
     <%@forum_posts.each do |post|%>
-      <a href="#" class="list-group-item" data-id='<%=post.id%>'>
+      <a href="/forum_posts?forum_post_id=<%=post.id%>" class="list-group-item">
         <%=post.title%>
       </a>
     <%end%>
 
   </div>
+</div>
+
+
+<div class='col-md-8'>
+  <%if !@forum_post.nil?%>
+    <h1><%=@forum_post.title%></h1>
+    <div class='well well-lg'>
+      <%=@forum_post.content.html_safe%>
+    </div>
+    <h3>Replies</h3>
+    <%@forum_post.forum_post_replies.each do |reply|%>
+      <div class='well well-lg'>
+        <%=reply.content.html_safe%>
+        <h5>By: <%=reply.user.name%></h5>
+      </div>
+    <%end%>
+    <div>
+      <%=form_for(ForumPostReply.new) do |f|%>
+        <%= f.text_area :content, class:'form-control', rows:4, class:'form-control' %><br>
+        <%= f.hidden_field :user_id, value: current_user.id%>
+        <%= f.hidden_field :forum_post_id, value: @forum_post.id%>
+        <%= f.submit class:'btn btn-primary'%>
+      <%end%>
+    </div>
+  <%end%>
 </div>
 
 <br>
