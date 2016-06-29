@@ -1,0 +1,45 @@
+<div class='page-header clearfix'>
+  <h1>Community Forum <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newForumPost">
+  Create New Forum Post
+</button></h1>
+
+</div>
+
+
+<div class="col-md-4">
+  <div class="list-group">
+    <%@forum_posts.each do |post|%>
+      <a href="#" class="list-group-item" data-id='<%=post.id%>'>
+        <%=post.title%>
+      </a>
+    <%end%>
+
+  </div>
+</div>
+
+<br>
+
+<!-- Modal -->
+<div class="modal fade" id="newForumPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">New Forum Post</h2>
+      </div>
+      <div class="modal-body">
+        <%= form_for(ForumPost.new, :html=>{:class=>"form-horizontal"}) do |f| %>
+          <%=f.label :title, class:'control-form'%><br>
+          <%= f.text_field :title, class:'form-control'%><br><br>
+          <%= f.bootsy_area :content, class:'form-control', :style=>"height:500px;"%>
+          <%=f.hidden_field :user_id, value: current_user.id%>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Save", class: 'btn btn-primary' %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>

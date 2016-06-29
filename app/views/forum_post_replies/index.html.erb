@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Forum Post Replies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forum_post_replies.each do |forum_post_reply| %>
+      <tr>
+        <td><%= link_to 'Show', forum_post_reply %></td>
+        <td><%= link_to 'Edit', edit_forum_post_reply_path(forum_post_reply) %></td>
+        <td><%= link_to 'Destroy', forum_post_reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Forum post reply', new_forum_post_reply_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629140407) do
+ActiveRecord::Schema.define(version: 20160629165144) do
 
   create_table "ahoy_messages", force: :cascade do |t|
     t.string   "token"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(version: 20160629140407) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forum_post_replies", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "forum_post_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "forum_posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

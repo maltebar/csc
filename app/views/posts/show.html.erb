@@ -94,18 +94,18 @@
 
 
 <script>
-	function editStep(){
+	function editPost(){
 		$(".view").hide();
 		$(".edit").show();
 	}
-	function viewStep(){
+	function viewPost(){
 		$(".edit").hide();
 		$(".view").show();
 	}
 	$(function(){
 		$("#edit").click(function(event){
 			event.preventDefault();
-			editStep();
+			editPost();
 		});	
 	});
 

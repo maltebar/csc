@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :forum_post_replies
+  resources :forum_posts
   resources :replies
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :comments
