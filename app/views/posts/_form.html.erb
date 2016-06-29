@@ -21,14 +21,14 @@
 
     <div class="form-group">
         <%= f.label :content, class:'control-label sr-only' %><br>
-        <%= f.bootsy_area :content, class:'form-control' %>
+        <%= f.bootsy_area :content, class:'form-control', :style=>"height:1000px;" %>
     </div>
 
       <%= f.hidden_field :user_id, value: current_user.id%>
 
 
     <div class="form-group">
-      <%= f.submit "Save", class:'btn btn-primary' %> <%= link_to "Cancel", @presentation, class: 'btn btn-link' %>
+      <%= f.submit "Save", class:'btn btn-primary' %> 
     </div>
     <% end %>
   
