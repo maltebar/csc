@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :replies
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :comments
   resources :posts

@@ -40,10 +40,41 @@
 			<div class="well well-sm">
 				<%=comment.content.html_safe%>
 				<br>
-				<h5>by: <%= comment.user.nickname %></h5>
+				<h5>by: <%= comment.user.nickname %><button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#viewReplies<%=comment.id%>"><span class="glyphicon glyphicon-share-alt"></span> <%=comment.replies.count%></button>
+				</h5>
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="viewReplies<%=comment.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h2 class="modal-title" id="myModalLabel">Replies</h2>
+						</div>
+						<div class="modal-body">
+							<% comment.replies.each do |reply|%>
+								<div class="well well-sm">
+									<%=reply.content%>
+									<h5>by: <%= reply.user.nickname %>
+								</div>
+							<%end%>
+							<%= form_for(Reply.new, :html=>{:class=>"form-horizontal"}) do |f| %>
+								<%= f.text_area :content, class:'form-control', rows:2 %>
+								<%=f.hidden_field :comment_id, value: comment.id%>
+								<%=f.hidden_field :user_id, value: current_user.id%>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<%= f.submit "Save", class: 'btn btn-primary' %>
+						</div>
+							<% end %>
+					</div>
+				</div>
 			</div>
 		<%end%>
 	</div>
+
 	<div>
 		<%=form_for(Comment.new) do |f|%>
 			<%= f.text_area :content, class:'form-control', rows:6, class:'form-control' %><br>
@@ -53,6 +84,14 @@
 		<%end%>
 	</div>
 </div>
+
+
+
+
+
+
+
+
 
 <script>
 	function editStep(){
@@ -69,4 +108,5 @@
 			editStep();
 		});	
 	});
+
 </script>

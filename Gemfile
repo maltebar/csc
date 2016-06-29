@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'devise'
 gem 'bootsy'
+gem 'rails-assets-tether', '>= 1.1.0'
 
 gem 'simply_notify'
 
