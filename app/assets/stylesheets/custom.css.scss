@@ -1,11 +1,3 @@
-li.successful a{
-	font-weight:bold;
-}
-
-li.unsuccessful a{
-	font-weight:normal;
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -42,6 +34,9 @@ body {
   display:block;
   max-width:none;
   width: 300px;
+}
+a.btn{
+  color:#FFFFFF !important;
 }
 
 
