@@ -23,6 +23,19 @@ body {
   border-bottom-width: 10px;
 }
 
+
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.commentbar {
+  position: fixed;
+  right: 5%;
+  width: 30%;
+}
+
 @media (min-width: 768px) {
   .modal-xl {
     width: 90%;
@@ -35,17 +48,14 @@ body {
   max-width:none;
   width: 300px;
 }
+
 a.btn.btn-primary{
   color:#FFFFFF !important;
 }
 
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-.commentbar {
-  position: fixed;
-  right: 5%;
-  width: 30%;
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    font-weight: bold;
+    cursor: default;
 }
