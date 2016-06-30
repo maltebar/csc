@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th>Post Author</th>
+        <th>Group</th>
         <th>Good Design</th>
         <th>Good Use of Examples</th>
         <th>Well-Written</th>
@@ -20,6 +21,9 @@
               <%else%>
                 <%= link_to post.user.nickname, post_path(post), :class=> "btn btn-link"%>
               <%end%>
+            </td>
+            <td>
+              <%=post.user.group_id%>
             </td>
             <td>
               count
