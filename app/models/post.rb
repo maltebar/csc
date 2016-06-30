@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
 	def notify
 		url = Rails.application.routes.url_helpers.post_path(self)
 		@users = User.where(group_id: User.find(self.user_id).group_id) 
-		puts @users
 		@users.each do |u| 
   			Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Post Submitted in Your Group", url: url)
 	  		if (u.notificationFrequency == 1 || u.admin == true)
