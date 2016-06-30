@@ -12,8 +12,9 @@ class User < ActiveRecord::Base
 
 	def make_groups
 		if !self.admin?
-			group_id = self.id % 10
-			self.update(group_id: group_id)
+			group_id = self.id % Group.all.count
+			id = Group.ids[group_id]
+			self.update(group_id: id)
 		end
 	end
 end
