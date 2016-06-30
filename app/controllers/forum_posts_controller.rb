@@ -7,8 +7,10 @@ class ForumPostsController < ApplicationController
     @forum_posts = ForumPost.all.order(created_at: :desc)
     if !ForumPost.where(id: params[:forum_post_id]).blank?
       @forum_post = ForumPost.find(params[:forum_post_id])
+      @new_post = ForumPost.new
     else
       @forum_post = nil
+      @new_post = ForumPost.new
     end 
   end
 
@@ -33,7 +35,7 @@ class ForumPostsController < ApplicationController
 
     respond_to do |format|
       if @forum_post.save
-        format.html { redirect_to :back, notice: 'Forum post was successfully created.' }
+        format.html { redirect_to forum_posts_path, notice: 'Forum post was successfully created.' }
         format.json { render :show, status: :created, location: @forum_post }
       else
         format.html { render :new }
@@ -47,7 +49,7 @@ class ForumPostsController < ApplicationController
   def update
     respond_to do |format|
       if @forum_post.update(forum_post_params)
-        format.html { redirect_to :back, notice: 'Forum post was successfully updated.' }
+        format.html { redirect_to forum_posts_path, notice: 'Forum post was successfully updated.' }
         format.json { render :show, status: :ok, location: @forum_post }
       else
         format.html { render :edit }

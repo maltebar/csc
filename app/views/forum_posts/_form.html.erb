@@ -1,17 +1,7 @@
-<%= form_for(@forum_post) do |f| %>
-  <% if @forum_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@forum_post.errors.count, "error") %> prohibited this forum_post from being saved:</h2>
-
-      <ul>
-      <% @forum_post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for(@forum_post, :html=>{:class=>"form-horizontal"}) do |f| %>
+	<%=f.label :title, class:'control-form'%><br>
+	<%= f.text_field :title, class:'form-control'%><br><br>
+	<%= f.bootsy_area :content, class:'form-control', :style=>"height:500px;"%>
+	<%=f.hidden_field :user_id, value: current_user.id%>
+	<%= f.submit "Save", class: 'btn btn-primary' %>
 <% end %>
