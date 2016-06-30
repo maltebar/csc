@@ -7,11 +7,14 @@ class ForumPostsController < ApplicationController
     @forum_posts = ForumPost.all.order(created_at: :desc)
     if !ForumPost.where(id: params[:forum_post_id]).blank?
       @forum_post = ForumPost.find(params[:forum_post_id])
-      @new_post = ForumPost.new
     else
       @forum_post = nil
-      @new_post = ForumPost.new
     end 
+    if params[:query].present?
+      @forum_posts = ForumPost.search(params[:query], page: params[:page])
+    else
+      @forum_posts = ForumPost.all.order(created_at: :desc)
+    end
   end
 
   # GET /forum_posts/1

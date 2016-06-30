@@ -1,19 +1,30 @@
 <div class='page-header clearfix'>
   <h1>Community Forum 
-    <a href="<%=new_forum_post_path%>" class="btn btn-primary pull-right">
-   <!--    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newForumPost"> -->
-  Create New Forum Post</a>
-</h1>
-
+    <a href="<%=new_forum_post_path%>" class="btn btn-primary pull-right">Create New Forum Post</a>
+  </h1>
 </div>
 
 
 <div class="col-md-4">
+    <%= form_tag forum_posts_path, class: "form-inline", method: :get do%>
+      <%= text_field_tag :query, params[:query], class: "form-control"%>
+      <%= submit_tag "Search", class: "btn btn-primary"%>
+      <% if params[:query].present?%>
+        <%= link_to "clear", forum_posts_path%>
+      <%end%>
+    <%end%>
+    <br><br>
   <div class="list-group">
     <%@forum_posts.each do |post|%>
-      <a href="/forum_posts?forum_post_id=<%=post.id%>" class="list-group-item">
-        <%=post.title%>
-      </a>
+      <% if params[:query].present?%>
+        <a href="/forum_posts?utf8=✓&query=<%=params[:query]%>&commit=Search&forum_post_id=<%=post.id%>" class="list-group-item">
+          <%=post.title%>
+        </a>
+      <%else%>
+        <a href="/forum_posts?forum_post_id=<%=post.id%>" class="list-group-item">
+          <%=post.title%>
+        </a>
+      <%end%>
     <%end%>
 
   </div>
