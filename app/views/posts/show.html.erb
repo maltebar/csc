@@ -1,7 +1,7 @@
 <div class="col-md-8">
 	<div class="page-header">
 		<h1><%= @assignment.title %>		
-			<%if @post.user == current_user%>
+			<%if @post.user == current_user && @assignment.final_due > Time.zone.now%>
 				<button type="button" class="btn btn-primary pull-right view" id='edit'>
 				Edit Post
 				</button>

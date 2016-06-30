@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160629165144) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.text     "first_draft"
     t.text     "content"
     t.integer  "user_id"
     t.integer  "assignment_id"

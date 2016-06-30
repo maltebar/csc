@@ -19,6 +19,9 @@ Group.create()
 Group.create()
 Group.create()
 
+Assignment.create(title: "both due", description: 'asdf', draft_due: "2016-06-30 14:20:00", final_due: "2016-06-30 14:20:00")
+Assignment.create(title: "draft due", description: 'asdf', draft_due: "2016-06-30 14:20:00", final_due: "2017-06-30 14:20:00")
+Assignment.create(title: "neither due", description: 'asdf', draft_due: "2017-06-30 14:20:00", final_due: "2017-06-30 14:20:00")
 
 User.create(name: 'Maria', email: 'maltebar@brandeis.edu', nickname:"Maria", password: '12345678', admin: true)
 User.create(name: 'Betty', email: 'betty@brandeis.edu', nickname:'Bets', password: '12345678', admin: false)

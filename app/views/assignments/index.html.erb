@@ -35,8 +35,11 @@
              <%= link_to assignment.title, {:controller => "posts", :action => "index", :assignment_id => assignment.id }, :class=> "btn btn-link"%>
           <%else%>
             <% @post = Post.where(user_id: current_user, assignment_id: assignment.id)%>
-            <%if @post.exists? %>
+            <%if @post.exists?%>
               <%= link_to assignment.title, {:controller => "posts", :action => "show", :id => @post.first.id, :assignment_id => assignment.id }, :class=> "btn btn-link"%>
+            <%elsif assignment.final_due < Time.zone.now%>
+              <% @post = Post.create(user_id: current_user.id, content:"", assignment_id: assignment.id)%>
+              <%= link_to assignment.title, {:controller => "posts", :action => "show", :id => @post.id, :assignment_id => assignment.id }, :class=> "btn btn-link"%>
             <%else%>
               <%= link_to assignment.title, {:controller => "posts", :action => "new", :assignment_id => assignment.id }, :class=> "btn btn-link"%>      
             <%end%>
