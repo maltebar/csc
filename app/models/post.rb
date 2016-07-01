@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
 	include Bootsy::Container
 	belongs_to :user
 	belongs_to :assignment
+	has_many :comments
+	has_many :badges
 	after_create :notify
 	before_save :update_first_draft
 

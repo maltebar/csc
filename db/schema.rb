@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629165144) do
+ActiveRecord::Schema.define(version: 20160701133350) do
 
   create_table "ahoy_messages", force: :cascade do |t|
     t.string   "token"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20160629165144) do
     t.datetime "final_due"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bootsy_image_galleries", force: :cascade do |t|

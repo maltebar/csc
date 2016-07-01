@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+
   resources :forum_post_replies
   resources :forum_posts
   resources :replies
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :comments
   resources :posts
   resources :groups
   resources :assignments
   resources :notifications
+  resources :badges
   
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

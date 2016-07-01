@@ -19,6 +19,10 @@ class PostsController < ApplicationController
     @assignment = Assignment.find(@post.assignment_id)
     @group_members = User.where(group_id: User.find(current_user.id).group_id)
     @comments = Comment.where(post_id: @post.id)
+    @badge_1 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good design")
+    @badge_2 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good examples")
+    @badge_3 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "well written")
+    @badge_4 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good reflection")
   end
 
   # GET /posts/new

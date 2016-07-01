@@ -26,16 +26,16 @@
               <%=post.user.group_id%>
             </td>
             <td>
-              count
+              <%=Badge.where(post_id: post.id, name: "good design").count%>
             </td>
             <td>
-              count
+              <%=Badge.where(post_id: post.id, name: "good examples").count%>
             </td>
             <td>
-              count
+              <%=Badge.where(post_id: post.id, name: "well written").count%>
             </td>
             <td>
-              count
+              <%=Badge.where(post_id: post.id, name: "good reflection").count%>
             </td>
             <td>
               count

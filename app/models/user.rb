@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :notifications
 	has_many :posts
+	has_many :badges
 	belongs_to :group
 	has_many :comments
 	has_many :replies

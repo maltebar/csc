@@ -10,6 +10,64 @@
 		<h5 style="color:red"><%= @assignment.draft_due.strftime("%A, %B %d at %I:%M %p")%></h5>
 		<h5 style="color:red"><%= @assignment.final_due.strftime("%A, %B %d at %I:%M %p")%></h5>
 		<h5>by: <%= @post.user.nickname %></h5>
+		<div>
+			<div class="col-md-3">
+				<%if !@badge_1.exists?%>
+					<%=form_for(Badge.new) do |f|%>
+						<%=f.hidden_field :user_id, value: current_user.id%>
+						<%=f.hidden_field :post_id, value: @post.id%>
+						<%=f.hidden_field :name, value: "good design"%>
+						<%=f.submit "Good Design (" + Badge.where(post_id: @post.id, name: 'good design').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+					<%end%>
+				<%else%>
+					<%= link_to "Good Design (" + Badge.where(post_id: @post.id, name: 'good design').count.to_s + ")", @badge_1.first, method: :delete, class: 'btn btn-primary btn-sm delete'%>
+				<%end%>
+			</div>
+
+
+			<div class="col-md-3">
+				<%if !@badge_2.exists?%>
+					<%=form_for(Badge.new) do |f|%>
+						<%=f.hidden_field :user_id, value: current_user.id%>
+						<%=f.hidden_field :post_id, value: @post.id%>
+						<%=f.hidden_field :name, value: "good examples"%>
+						<%=f.submit "Good Examples (" + Badge.where(post_id: @post.id, name: 'good examples').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+					<%end%>
+				<%else%>
+					<%= link_to "Good Examples (" + Badge.where(post_id: @post.id, name: 'good examples').count.to_s + ")", @badge_2.first, method: :delete, class: 'btn btn-primary btn-sm delete' %>
+				<%end%>
+			</div>
+
+			<div class="col-md-3">
+				<%if !@badge_3.exists?%>
+					<%=form_for(Badge.new) do |f|%>
+						<%=f.hidden_field :user_id, value: current_user.id%>
+						<%=f.hidden_field :post_id, value: @post.id%>
+						<%=f.hidden_field :name, value: "well written"%>
+						<%=f.submit "Well Written (" + Badge.where(post_id: @post.id, name: 'well written').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+					<%end%>
+				<%else%>
+					<%= link_to "Well Written (" + Badge.where(post_id: @post.id, name: 'well written').count.to_s + ")", @badge_3.first, method: :delete, class: 'btn btn-primary btn-sm delete' %>
+				<%end%>
+			</div>
+
+			<div class="col-md-3">
+				<%if !@badge_4.exists?%>
+					<%=form_for(Badge.new) do |f|%>
+						<%=f.hidden_field :user_id, value: current_user.id%>
+						<%=f.hidden_field :post_id, value: @post.id%>
+						<%=f.hidden_field :name, value: "good reflection"%>
+						<%=f.submit "Good Reflection Statement (" + Badge.where(post_id: @post.id, name: 'good reflection').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+					<%end%>
+				<%else%>
+					<%= link_to "Good Reflection Statement (" + Badge.where(post_id: @post.id, name: 'good reflection').count.to_s + ")", @badge_4.first, method: :delete, class: 'btn btn-primary btn-sm delete' %>
+				<%end%>
+			</div>
+			<br><br>
+		</div>
+
+
+
 
 	</div>
 	<div class="well well-lg view">
