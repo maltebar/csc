@@ -19,8 +19,14 @@ body {
 }
 
  .navbar{
+  background-color: #003264;
   border-bottom-style: solid;
   border-bottom-width: 10px;
+  height: 80px;
+}
+
+.container > .navbar-header{
+  margin-top: 10px;
 }
 
 
@@ -30,21 +36,47 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+*{
+  color: #003264;
+}
+
+.popover-content{
+  max-height:300px; 
+  overflow:scroll;
+}
+
+.list-group-item{
+  color: #003264 !important;
+}
+
 .commentbar {
   position: fixed;
   right: 5%;
   width: 30%;
 }
 
+.navbar-brand{
+  color: #FFFFBE !important;
+}
+
+.navbar-nav{
+  color: #FFFFBE !important;
+  margin-top: 5px;
+}
+
 .delete {
-  background-color: #014884;
+  background-color: #e6e6e6;
 }
 
 @media (min-width: 768px) {
   .modal-xl {
     width: 90%;
-   max-width:1200px;
+    max-width:1200px;
   }
+}
+
+.text-muted{
+  color: #003264 !important;
 }
 
 .popover{
@@ -54,12 +86,17 @@ body {
 }
 
 a.btn.btn-primary{
-  color:#FFFFFF !important;
+  color:#FFFFBE !important;
+}
+
+.btn-primary{
+  background-color: #003264 !important;
+  border-color: #acacac !important;
+  color: #FFFFBE; 
 }
 
 /* Sortable tables */
 table.sortable thead {
     background-color:#eee;
-    font-weight: bold;
     cursor: default;
 }

@@ -34,7 +34,7 @@
 <div class='col-md-8'>
   <%if !@forum_post.nil?%>
     <h1><%=@forum_post.title%></h1>
-    <h5>By: <%=@forum_post.user.name%></h5>
+    <h5>By: <%=@forum_post.user.nickname%></h5>
     <div class='well well-lg'>
       <%=@forum_post.content.html_safe%>
     </div>
@@ -42,7 +42,7 @@
     <%@forum_post.forum_post_replies.each do |reply|%>
       <div class='well well-sm'>
         <%=reply.content.html_safe%>
-        <h5>By: <%=reply.user.name%></h5>
+        <h5>By: <%=reply.user.nickname%></h5>
       </div>
     <%end%>
     <div>
@@ -50,7 +50,7 @@
         <%= f.text_area :content, class:'form-control', rows:4, class:'form-control' %><br>
         <%= f.hidden_field :user_id, value: current_user.id%>
         <%= f.hidden_field :forum_post_id, value: @forum_post.id%>
-        <%= f.submit class:'btn btn-primary'%>
+        <%= f.submit "Save Reply", class:'btn btn-primary pull-right'%>
       <%end%>
     </div>
   <%end%>

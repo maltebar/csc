@@ -2,8 +2,10 @@
 <div class="list-group">
   <%@notifications.each do |notify|%>
     <a href=<%=notify.url%> class="list-group-item">
-      <%=notify.action%>
+      <%=notify.action%> <br>
+      <small><%= time_ago_in_words(notify.created_at) %> ago</small>
     </a>
+
   <%end%>
 
 </div>

@@ -17,10 +17,10 @@
 						<%=f.hidden_field :user_id, value: current_user.id%>
 						<%=f.hidden_field :post_id, value: @post.id%>
 						<%=f.hidden_field :name, value: "good design"%>
-						<%=f.submit "Good Design (" + Badge.where(post_id: @post.id, name: 'good design').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+						<%=f.submit "Good Design (" + Badge.where(post_id: @post.id, name: 'good design').count.to_s + ")", class: 'btn btn-default btn-sm'%>
 					<%end%>
 				<%else%>
-					<%= link_to "Good Design (" + Badge.where(post_id: @post.id, name: 'good design').count.to_s + ")", @badge_1.first, method: :delete, class: 'btn btn-primary btn-sm delete'%>
+					<%= link_to "Good Design (" + Badge.where(post_id: @post.id, name: 'good design').count.to_s + ")", @badge_1.first, method: :delete, class: 'btn btn-default btn-sm delete'%>
 				<%end%>
 			</div>
 
@@ -31,10 +31,10 @@
 						<%=f.hidden_field :user_id, value: current_user.id%>
 						<%=f.hidden_field :post_id, value: @post.id%>
 						<%=f.hidden_field :name, value: "good examples"%>
-						<%=f.submit "Good Examples (" + Badge.where(post_id: @post.id, name: 'good examples').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+						<%=f.submit "Good Examples (" + Badge.where(post_id: @post.id, name: 'good examples').count.to_s + ")", class: 'btn btn-default btn-sm'%>
 					<%end%>
 				<%else%>
-					<%= link_to "Good Examples (" + Badge.where(post_id: @post.id, name: 'good examples').count.to_s + ")", @badge_2.first, method: :delete, class: 'btn btn-primary btn-sm delete' %>
+					<%= link_to "Good Examples (" + Badge.where(post_id: @post.id, name: 'good examples').count.to_s + ")", @badge_2.first, method: :delete, class: 'btn btn-default btn-sm delete' %>
 				<%end%>
 			</div>
 
@@ -44,10 +44,10 @@
 						<%=f.hidden_field :user_id, value: current_user.id%>
 						<%=f.hidden_field :post_id, value: @post.id%>
 						<%=f.hidden_field :name, value: "well written"%>
-						<%=f.submit "Well Written (" + Badge.where(post_id: @post.id, name: 'well written').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+						<%=f.submit "Well Written (" + Badge.where(post_id: @post.id, name: 'well written').count.to_s + ")", class: 'btn btn-default btn-sm'%>
 					<%end%>
 				<%else%>
-					<%= link_to "Well Written (" + Badge.where(post_id: @post.id, name: 'well written').count.to_s + ")", @badge_3.first, method: :delete, class: 'btn btn-primary btn-sm delete' %>
+					<%= link_to "Well Written (" + Badge.where(post_id: @post.id, name: 'well written').count.to_s + ")", @badge_3.first, method: :delete, class: 'btn btn-default btn-sm delete' %>
 				<%end%>
 			</div>
 
@@ -57,10 +57,10 @@
 						<%=f.hidden_field :user_id, value: current_user.id%>
 						<%=f.hidden_field :post_id, value: @post.id%>
 						<%=f.hidden_field :name, value: "good reflection"%>
-						<%=f.submit "Good Reflection Statement (" + Badge.where(post_id: @post.id, name: 'good reflection').count.to_s + ")", class: 'btn btn-primary btn-sm'%>
+						<%=f.submit "Good Reflection Statement (" + Badge.where(post_id: @post.id, name: 'good reflection').count.to_s + ")", class: 'btn btn-default btn-sm'%>
 					<%end%>
 				<%else%>
-					<%= link_to "Good Reflection Statement (" + Badge.where(post_id: @post.id, name: 'good reflection').count.to_s + ")", @badge_4.first, method: :delete, class: 'btn btn-primary btn-sm delete' %>
+					<%= link_to "Good Reflection Statement (" + Badge.where(post_id: @post.id, name: 'good reflection').count.to_s + ")", @badge_4.first, method: :delete, class: 'btn btn-default btn-sm delete' %>
 				<%end%>
 			</div>
 			<br><br>
@@ -80,44 +80,44 @@
 </div>
 
 <div class="col-md-4 commentbar" style="height:100%;">
-	<div class="page-header">
-		<span style="display: inline;">
-			<ul class="nav nav-pills">
-				<%@group_members.each do |user|%>
-					<% if Post.where(user_id: user.id, assignment_id: @assignment.id).exists?%>
-						<% @post = Post.find(Post.where(user_id: user.id, assignment_id: @assignment.id).first.id)%>
-						<li><a href=<%=post_path(@post)%>><%=user.nickname%>'s Post</a></li>				
+	<%if @post.user.group == current_user.group%>
+		<div class="page-header">
+			<span style="display: inline;">
+				<ul class="nav nav-pills">
+					<%@group_members.each do |user|%>
+						<% if Post.where(user_id: user.id, assignment_id: @assignment.id).exists?%>
+							<% @post = Post.find(Post.where(user_id: user.id, assignment_id: @assignment.id).first.id)%>
+							<li><a href=<%=post_path(@post)%>><%=user.nickname%>'s Post</a></li>				
+						<%end%>
 					<%end%>
-				<%end%>
-			</ul>
-		</span>
-	</div>
+				</ul>
+			</span>
+		</div>
+	<%end%>
 
 	<div style="height: 40%; overflow: scroll">
 		<%@comments.each do |comment|%>
 			<div class="well well-sm">
-				<%=comment.content.html_safe%>
-				<br>
-				<h5><div class='col-md-6'>by: <%= comment.user.nickname %></div>
-					<a href="#" class="btn btn-default" data-toggle="popover" data-content="" data-id="<%=comment.id%>"><span class="glyphicon glyphicon-share-alt"></span> <%=comment.replies.count%></a>
+				<div style="white-space: pre-line;"><%=comment.content.html_safe%></div>
+				<h5><div class='col-md-6'><small>by: <%= comment.user.nickname %></small></div>
+					<a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-content="" data-id="<%=comment.id%>"><span class="glyphicon glyphicon-share-alt"></span> <%=comment.replies.count%></a>
 				</h5>
 			</div>
 
 			<div style="display:none;" id="viewReplies<%=comment.id%>">
 				<% comment.replies.each do |reply|%>
 					<div class="well well-sm">
-						<%=reply.content%>
-						<h5>by: <%= reply.user.nickname %>
+						<div style="white-space: pre-line;"><%=reply.content%></div>
+						<small>by: <%= reply.user.nickname %></small>
 					</div>
 				<%end%>
 				<%= form_for(Reply.new, :html=>{:class=>"form-horizontal"}) do |f| %>
 					<%= f.text_area :content, class:'form-control', rows:2 %>
 					<%=f.hidden_field :comment_id, value: comment.id%>
 					<%=f.hidden_field :user_id, value: current_user.id%>
-					<%= f.submit "Save", class: 'btn btn-primary' %>
+					<%= f.submit "Save", class: 'btn btn-primary btn-sm pull-right' %>
 				<%end%>
 			</div>
-			<!-- Modal -->
 
 		<%end%>
 	</div>
@@ -127,7 +127,7 @@
 			<%= f.text_area :content, class:'form-control', rows:6, class:'form-control' %><br>
 			<%= f.hidden_field :user_id, value: current_user.id%>
 			<%= f.hidden_field :post_id, value: @post.id%>
-			<%= f.submit class:'btn btn-primary'%>
+			<%= f.submit "Save Comment", class:'btn btn-primary pull-right'%>
 		<%end%>
 	</div>
 </div>
@@ -142,15 +142,25 @@
 	$(function(){
 	    $('[data-toggle="popover"]').popover({
 	    	placement: "bottom",
-	    	container: 'body',
+	    	container: 'body', 
 		    content: function() {
 		    	var comment_id = $(this).data("id");
-				console.log(comment_id);
 		    	return $('#viewReplies'+comment_id).html();
 		    },
 	      	html: true
 	  	});
 	});
+
+	$('body').on('click', function (e) {
+	    $('[data-toggle="popover"]').each(function () {
+	        //the 'is' for buttons that trigger popups
+	        //the 'has' for icons within a button that triggers a popup
+	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+	            $(this).popover('hide');
+	        }
+	    });
+	});
+
 	function editPost(){
 		$(".view").hide();
 		$(".edit").show();
