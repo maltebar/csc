@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'mysql2', '0.3.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -18,6 +18,8 @@ gem 'devise'
 gem 'bootsy'
 gem "searchkick"
 gem 'rails-assets-tether', '>= 1.1.0'
+gem 'ahoy_matey'
+gem 'activeuuid', '>= 0.5.0'
 
 gem 'simply_notify'
 

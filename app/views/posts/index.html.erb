@@ -49,7 +49,8 @@
 												<%=Badge.where(post_id: post.id, name: "good reflection").count%>
 											</td>
 											<td>
-												count
+												<%= Ahoy::Event.where(name: "Read Post").where_properties(post_id: post.id).count %>
+							
 											</td>
 										</tr>
 									<% end %>

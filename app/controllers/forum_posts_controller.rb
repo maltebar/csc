@@ -7,6 +7,7 @@ class ForumPostsController < ApplicationController
     @forum_posts = ForumPost.all.order(created_at: :desc)
     if !ForumPost.where(id: params[:forum_post_id]).blank?
       @forum_post = ForumPost.find(params[:forum_post_id])
+      ahoy.track "Read Forum Post", forum_post_id: @forum_post.id
     else
       @forum_post = nil
     end 
@@ -14,6 +15,9 @@ class ForumPostsController < ApplicationController
       @forum_posts = ForumPost.search(params[:query], page: params[:page])
     else
       @forum_posts = ForumPost.all.order(created_at: :desc)
+    end
+    unless current_user.admin?
+      ahoy.track "Visited Community Forum"
     end
   end
 

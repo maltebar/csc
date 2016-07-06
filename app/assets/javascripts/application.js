@@ -17,4 +17,5 @@
 //= require sortable.js
 //= require turbolinks
 //= require bootsy
+//= require ahoy
 //= require_tree .

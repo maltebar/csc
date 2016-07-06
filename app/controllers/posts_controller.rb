@@ -10,6 +10,9 @@ class PostsController < ApplicationController
     else
       @assignments = Assignment.where(id: params[:assignment_id])
     end
+    unless current_user.admin?
+      ahoy.track "Visited Class Post Page"
+    end
   end
 
   # GET /posts/1
@@ -23,6 +26,9 @@ class PostsController < ApplicationController
     @badge_2 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good examples")
     @badge_3 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "well written")
     @badge_4 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good reflection")
+    unless @post.user.id == current_user.id
+      ahoy.track "Read Post", post_id: @post.id
+    end
   end
 
   # GET /posts/new
@@ -57,6 +63,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        ahoy.track "Edited Post", post_id: @post.id
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
