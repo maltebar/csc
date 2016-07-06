@@ -3,5 +3,5 @@
 	<%= f.text_field :title, class:'form-control'%><br><br>
 	<%= f.bootsy_area :content, class:'form-control', :style=>"height:500px;"%>
 	<%=f.hidden_field :user_id, value: current_user.id%>
-	<%= f.submit "Save", class: 'btn btn-primary' %>
+	<%= f.submit "Save", class: 'btn btn-primary pull-right' %>
 <% end %>

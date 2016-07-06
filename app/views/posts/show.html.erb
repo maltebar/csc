@@ -122,7 +122,7 @@
 		<%end%>
 	</div>
 
-	<div>
+	<div style="padding-top: 10px;">
 		<%=form_for(Comment.new) do |f|%>
 			<%= f.text_area :content, class:'form-control', rows:6, class:'form-control' %><br>
 			<%= f.hidden_field :user_id, value: current_user.id%>
