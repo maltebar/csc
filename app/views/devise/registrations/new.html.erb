@@ -42,6 +42,34 @@
     <%= f.radio_button :notificationFrequency, 2 %>
     <%= f.label("I want to receive a list of notifications for my account by email every 24 hours") %></br>
   </div>
+   <div>
+    <p>RESEARCH PARTICIPATION AGREEMENT </p>
+    <textarea style="width: 500px; height: 100px;"> 
+    
+By registering for an account on Community Learning Platform (CLP), I consent to participate in this study. If, during the course of this study, significant new informa- tion developed during the study becomes available, which may relate to my willingness to continue to participate, this information will be provided to me by the investigators. I understand that any information derived from this research project which personally iden- tifies me will not be voluntarily released or disclosed without my separate consent, except as specifically required by law.
+By registering for an account I am verifying that I am 18 years or older. 
+WAIVER OF DOCUMENTATION OF INFORMED CONSENT 
+By registering for an account you choose to waive documentation of informed consent on grounds of no more than minimal risk. You will be notified of any additional pertinent information after your participation. This means if the data is to be used in any other way that offers no more than minimal risk you will have the chance to withdraw your data from the study.
+COMMUNITY LEARNING PLATFORM DATA COLLECTION TERMS
+1. The CLP (Community Leaning Platform) automatically transcribes the activities of individuals while logged into the site. 2. In no instances will CLP collect private informa- tion, such as usernames or passwords. 3. CLP does not intentionally collect information that is personal. However, there are instances where information, such as a filename get transcribed. In these instances, we will identify error in our software and correct it, while also removing the identifying content from our data.
+PARTICIPATION AGREEMENT
+Once I agree to participate in this study I acknowledge to the following: 1. I agree to allow The CLP (Community Learning Platform) to collect data on my online activities on the site. I understand that my online activities (as described above) are transcribed and transcripts of my online activities may be collected and analyzed for scientific research. The CLP DOES NOT record or collect sensitive or personal information.
+
+2. I agree that I will neither use the data and/or information obtained in this study in any current or future research projects unless I obtain a written consent from the researchers. 
+3. I agree to not disclose any information about The CLP, it’s features, goals, and the data collected to anyone unrelated to the project unless I obtain a written consent from the researchers. 
+4. I permit the researchers to use the data in future research as they see fit provided that they take the necessary precautions to protect my identity and any other personal information they might have obtained. 
+
+5. I understand that any information derived from this research project that personally identifies myself will not be voluntarily released or disclosed without my separate consent, except as specifically required by law.
+
+6. I understand that I am free to exit the study at any time. To remove myself from the study, I simply do not log into the site related to the study. If I decide to leave the study, the data collected on me will be removed from the study. If at any time you have questions regarding the research or your participation, you should contact the researchers who must answer all questions to the best of their knowledge. You can reach the Principal Investigator, Dr. Richard Alterman, via email at ralterma@brandeis.edu or by phone at 781-736-2703 and you can reach the student investigator, Ken Harsch, via email at kharsch@brandeis.edu or by phone at 330-907-1419 and student investigator, Maria Altebarmakian, via email at maltebar@brandeis.edu or by phone at 559-287-8076.  If you have questions about your rights as a research subject please contact the Brandeis Institutional Review Board at irb@brandeis.edu or 781-736-8133.
+
+</textarea>
+  </div>
+
+   <div class="field">
+    <%= f.label "Check box to opt out of data collection:" %> <br />
+    <%= f.check_box :optout %> <br />
+</div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

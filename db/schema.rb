@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20160701133350) do
     t.string   "name",                   default: "",    null: false
     t.boolean  "admin",                  default: false, null: false
     t.string   "nickname",               default: "",    null: false
+    t.boolean  "optout",                 default: false, null: false
     t.integer  "group_id"
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
