@@ -15,6 +15,7 @@ body {
   /* Set the fixed height of the footer here */
   height: 70px;
   border-top-style: solid;
+  border-top-color: #003264;
   border-top-width: 10px;
 }
 
@@ -22,6 +23,7 @@ body {
   background-color: #003264;
   border-bottom-style: solid;
   border-bottom-width: 10px;
+  border-bottom-color: #FFFFBE;
   height: 80px;
 }
 
@@ -93,6 +95,10 @@ a.btn.btn-primary{
   background-color: #003264 !important;
   border-color: #acacac !important;
   color: #FFFFBE; 
+}
+
+.page-header{
+  border-bottom-color: #003264;
 }
 
 /* Sortable tables */

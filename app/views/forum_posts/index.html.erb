@@ -41,8 +41,8 @@
     <h3>Replies</h3>
     <%@forum_post.forum_post_replies.each do |reply|%>
       <div class='well well-sm' style="white-space: pre-line;">
-        <%=reply.content.html_safe%>
-        <h5>By: <%=reply.user.nickname%></h5>
+        <%=reply.content.html_safe%><br>
+        <small>By: <%=reply.user.nickname%></small>
       </div>
     <%end%>
     <div>
