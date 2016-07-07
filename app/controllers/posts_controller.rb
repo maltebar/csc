@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @badge_2 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good examples")
     @badge_3 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "well written")
     @badge_4 = Badge.where(post_id: @post.id, user_id: current_user.id, name: "good reflection")
-    unless @post.user.id == current_user.id
+    unless @post.user.id == current_user.id || current_user.admin?
       ahoy.track "Read Post", post_id: @post.id
     end
   end
