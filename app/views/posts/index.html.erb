@@ -2,16 +2,16 @@
 	<%@assignments.each do |assignment|%>
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default">
-			<div class="panel-heading" role="tab" id="heading<%=assignment.id%>">
-				<h4 class="panel-title">
-					<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=assignment.id%>" aria-expanded="true" aria-controls="collapse<%=assignment.id%>">
-						 Posts For Assignment: <%=assignment.title%>
-					</a>
-				</h4>
-			</div>
-			<div id="collapse<%=assignment.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=assignment.id%>">
-				<div class="panel-body">
-					<table class='table sortable'>
+				<div class="panel-heading" role="tab" id="heading<%=assignment.id%>">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=assignment.id%>" aria-expanded="true" aria-controls="collapse<%=assignment.id%>">
+							 Posts For Assignment: <%=assignment.title%>
+						</a>
+					</h4>
+				</div>
+				<div id="collapse<%=assignment.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=assignment.id%>">
+					<div class="panel-body">
+						<table class='table sortable'>
 							<thead>
 								<tr>
 									<th>Post Author</th>
@@ -24,39 +24,40 @@
 								</tr>
 							</thead>
 							<tbody>
-									<%@posts.where(assignment_id: assignment.id).each do |post|%>
-										<tr>
-											<td>
-												<%if current_user.admin?%>
-													<%= link_to post.user.name, post_path(post), :class=> "btn btn-link"%>
-												<%else%>
-													<%= link_to post.user.nickname, post_path(post), :class=> "btn btn-link"%>
-												<%end%>
-											</td>
-											<td>
-												<%=post.user.group_id%>
-											</td>
-											<td>
-												<%=Badge.where(post_id: post.id, name: "good design").count%>
-											</td>
-											<td>
-												<%=Badge.where(post_id: post.id, name: "good examples").count%>
-											</td>
-											<td>
-												<%=Badge.where(post_id: post.id, name: "well written").count%>
-											</td>
-											<td>
-												<%=Badge.where(post_id: post.id, name: "good reflection").count%>
-											</td>
-											<td>
-												<%= Ahoy::Event.where(name: "Read Post").where_properties(post_id: post.id).count %>
-							
-											</td>
-										</tr>
-									<% end %>
+								<%@posts.where(assignment_id: assignment.id).each do |post|%>
+									<tr>
+										<td>
+											<%if current_user.admin?%>
+												<%= link_to post.user.name, post_path(post), :class=> "btn btn-link"%>
+											<%else%>
+												<%= link_to post.user.nickname, post_path(post), :class=> "btn btn-link"%>
+											<%end%>
+										</td>
+										<td>
+											<%=post.user.group_id%>
+										</td>
+										<td>
+											<%=Badge.where(post_id: post.id, name: "good design").count%>
+										</td>
+										<td>
+											<%=Badge.where(post_id: post.id, name: "good examples").count%>
+										</td>
+										<td>
+											<%=Badge.where(post_id: post.id, name: "well written").count%>
+										</td>
+										<td>
+											<%=Badge.where(post_id: post.id, name: "good reflection").count%>
+										</td>
+										<td>
+											<%= Ahoy::Event.where(name: "Read Post").where_properties(post_id: post.id).count %>
+						
+										</td>
+									</tr>
+								<% end %>
 								</tbody>
 						</table>
-			</div>
-			</div>
-	 </div>
+					</div>
+				</div>
+	 		</div>
+	 	</div>
 	<%end%>

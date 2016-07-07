@@ -100,7 +100,9 @@
 			<div class="well well-sm">
 				<div style="white-space: pre-line;"><%=comment.content.html_safe%></div>
 				<h5><div class='col-md-6'><small>by: <%= comment.user.nickname %></small></div>
-					<a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-content="" data-id="<%=comment.id%>"><span class="glyphicon glyphicon-share-alt"></span> <%=comment.replies.count%></a>
+					<button type="button" class="btn btn-default btn-sm" data-container="body" data-toggle="popover" data-placement="bottom" data-content="" data-id="<%=comment.id%>">
+						<span class="glyphicon glyphicon-share-alt"></span> <%=comment.replies.count%>
+					</button>
 				</h5>
 			</div>
 
@@ -136,8 +138,6 @@
 
 
 
-
-
 <script>
 	$(function(){
 	    $('[data-toggle="popover"]').popover({
@@ -152,14 +152,14 @@
 	});
 
 	$('body').on('click', function (e) {
-	    $('[data-toggle="popover"]').each(function () {
-	        //the 'is' for buttons that trigger popups
-	        //the 'has' for icons within a button that triggers a popup
-	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-	            $(this).popover('hide');
-	        }
-	    });
-	});
+ 	    $('[data-toggle="popover"]').each(function () {
+ 	        //the 'is' for buttons that trigger popups
+ 	        //the 'has' for icons within a button that triggers a popup
+ 	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+ 	            $(this).popover('hide');
+ 	        }
+ 	    });
+ 	});
 
 	function editPost(){
 		$(".view").hide();
