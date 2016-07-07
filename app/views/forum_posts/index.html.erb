@@ -35,12 +35,12 @@
   <%if !@forum_post.nil?%>
     <h1><%=@forum_post.title%></h1>
     <h5>By: <%=@forum_post.user.nickname%></h5>
-    <div class='well well-lg'>
+    <div class='well well-lg' style="white-space: pre-line;">
       <%=@forum_post.content.html_safe%>
     </div>
     <h3>Replies</h3>
     <%@forum_post.forum_post_replies.each do |reply|%>
-      <div class='well well-sm'>
+      <div class='well well-sm' style="white-space: pre-line;">
         <%=reply.content.html_safe%>
         <h5>By: <%=reply.user.nickname%></h5>
       </div>
