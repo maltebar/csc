@@ -16,6 +16,6 @@
 //= require jquery_ujs
 //= require sortable.js
 //= require turbolinks
-//= require bootsy
 //= require ahoy
+//= require bootsy
 //= require_tree .
