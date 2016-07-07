@@ -12,7 +12,8 @@ class ForumPostsController < ApplicationController
       @forum_post = nil
     end 
     if params[:query].present?
-      @forum_posts = ForumPost.search(params[:query], page: params[:page])
+      @forum_posts = ForumPost.search(params[:query], fields: [:title, :content], misspellings: {edit_distance: 2})
+      ahoy.track "Searched Community Forum", query: params[:query]
     else
       @forum_posts = ForumPost.all.order(created_at: :desc)
     end
