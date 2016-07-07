@@ -14,41 +14,41 @@
 						<table class='table sortable'>
 							<thead>
 								<tr>
-									<th>Post Author</th>
-									<th>Group</th>
-									<th>Good Design</th>
-									<th>Good Use of Examples</th>
-									<th>Well-Written</th>
-									<th>Good Reflection Statement</th>
-									<th>Number of Reads</th>
+									<th style="text-align:center">Post Author</th>
+									<th style="text-align:center">Group</th>
+									<th style="text-align:center">Good Design</th>
+									<th style="text-align:center">Good Use of Examples</th>
+									<th style="text-align:center">Well-Written</th>
+									<th style="text-align:center">Good Reflection Statement</th>
+									<th style="text-align:center">Number of Reads</th>
 								</tr>
 							</thead>
 							<tbody>
 								<%@posts.where(assignment_id: assignment.id).each do |post|%>
 									<tr>
-										<td>
+										<td style="text-align:center">
 											<%if current_user.admin?%>
 												<%= link_to post.user.name, post_path(post), :class=> "btn btn-link"%>
 											<%else%>
 												<%= link_to post.user.nickname, post_path(post), :class=> "btn btn-link"%>
 											<%end%>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<%=post.user.group_id%>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<%=Badge.where(post_id: post.id, name: "good design").count%>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<%=Badge.where(post_id: post.id, name: "good examples").count%>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<%=Badge.where(post_id: post.id, name: "well written").count%>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<%=Badge.where(post_id: post.id, name: "good reflection").count%>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<%= Ahoy::Event.where(name: "Read Post").where_properties(post_id: post.id).count %>
 						
 										</td>
