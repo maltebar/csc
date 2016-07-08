@@ -11,7 +11,9 @@ class Post < ActiveRecord::Base
 		url = Rails.application.routes.url_helpers.post_path(self)
 		@users = User.where(group_id: User.find(self.user_id).group_id) 
 		@users.each do |u| 
-  			Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Post Submitted in Your Group", url: url)
+			if u != self.user
+  				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Submitted a Post in Your Group for Assignment "+self.assignment.title, url: url)
+	  		end
 	  		if (u.notificationFrequency == 1 || u.admin == true)
 			    # use nil as parameter if you want link to be homepage, can also use url 
 			    # change title of email by changing 'Notifications'

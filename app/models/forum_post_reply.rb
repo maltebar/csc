@@ -14,10 +14,10 @@ class ForumPostReply < ActiveRecord::Base
 			end
 		end 
 		@users.uniq.each do |u| 
-			if u == @post.user
-				Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Reply on Your Forum Post", url: url)
-			else
-  				Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Reply on a Forum Post You Replied To", url: url)
+			if u == @post.user && @post.user != self.user
+				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+"  Replied to Your Forum Post: "+@post.title, url: url)
+			elsif u != @post.user && @post.user != self.user
+  				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Replied to a Forum Post: "+@post.title, url: url)
 	  		end
 	  		if (u.notificationFrequency == 1 || u.admin == true)
 			    # use nil as parameter if you want link to be homepage, can also use url 

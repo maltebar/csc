@@ -14,10 +14,10 @@ class Comment < ActiveRecord::Base
 			@users = @users + [comment.user]
 		end 
 		@users.uniq.each do |u| 
-			if u == @post.user
-				Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Comment on Your Post", url: url)
-			else
-  				Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Comment on a Post You Commented On", url: url)
+			if u == @post.user && @post.user != self.user
+				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Commented on Your Post for Assignment "+@post.assignment.title, url: url)
+			elsif u != @post.user && @post.user != self.user
+  				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Commented on "+self.user.nickname+"'s Post for Assignment "+@post.assignment.title, url: url)
 	  		end
 	  		if (u.notificationFrequency == 1 || u.admin == true)
 			    # use nil as parameter if you want link to be homepage, can also use url 

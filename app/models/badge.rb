@@ -7,7 +7,7 @@ class Badge < ActiveRecord::Base
 	def notify
 		@post = Post.find(self.post.id)
 		url = Rails.application.routes.url_helpers.post_path(@post) 
-		Notification.create(recipient: @post.user, creator: User.find(self.user_id), action: "Your Post Received a New Badge", url: url)
+		Notification.create(recipient: @post.user, creator: User.find(self.user_id), action: "Your Post for Assignment " + @post.assignment.title + " Received a New Badge", url: url)
   		if (@post.user.notificationFrequency == 1 || @post.user.admin == true)
 		    # use nil as parameter if you want link to be homepage, can also use url 
 		    # change title of email by changing 'Notifications'

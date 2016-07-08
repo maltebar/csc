@@ -14,10 +14,10 @@ class Reply < ActiveRecord::Base
 			end
 		end 
 		@users.uniq.each do |u| 
-			if u == @comment.user
-				Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Reply on Your Comment", url: url)
-			else
-  				Notification.create(recipient: u, creator: User.find(self.user_id), action: "New Reply on a Comment You Replied To", url: url)
+			if u == @comment.user && @comment.user != self.user
+				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Replied to Your Comment", url: url)
+			elsif u != @comment.user && @comment.user != self.user
+  				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Replied to a Comment You Replied To", url: url)
 	  		end
 	  		if (u.notificationFrequency == 1 || u.admin == true)
 			    # use nil as parameter if you want link to be homepage, can also use url 
