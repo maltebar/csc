@@ -28,7 +28,7 @@ class TournamentsController < ApplicationController
 
     respond_to do |format|
       if @tournament.save
-        format.html { redirect_to :back, notice: 'Tournament was successfully created.' }
+        format.html { redirect_to tournaments_path, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TournamentsController < ApplicationController
   def update
     respond_to do |format|
       if @tournament.update(tournament_params)
-        format.html { redirect_to :back, notice: 'Tournament was successfully updated.' }
+        format.html { redirect_to tournaments_path, notice: 'Tournament was successfully updated.' }
         format.json { render :show, status: :ok, location: @tournament }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class TournamentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:assignment_id, :gd_percent, :ge_percent, :ww_percent, :gr_percent, :read_percent)
+      params.require(:tournament).permit(:assignment_id, :gd_percent, :ge_percent, :ww_percent, :gr_percent, :read_percent, :closed)
     end
 end

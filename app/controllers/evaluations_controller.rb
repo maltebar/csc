@@ -4,7 +4,25 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.where(tournament_id: params[:tournament_id], user_id: current_user.id).rank(:row_order)
+    @tournament = Tournament.find(params[:tournament_id])
+    if @tournament.closed?
+      @evaluations = Evaluation.where(tournament_id: params[:tournament_id])
+      @posts_eval = Array.new
+      @evaluations.each do |eval|
+        @posts_eval = @posts_eval << eval.post
+      end
+      @posts_eval = @posts_eval.uniq
+      @posts_hash = Hash.new
+      @posts_eval.each do |post|
+        @posts_hash[post.id] = Evaluation.where(tournament_id: params[:tournament_id], post_id: post.id).sum(:row_order)
+      end
+      @posts = Array.new
+      @posts_hash.sort_by(&:last).to_h.keys.each do |post|
+        @posts << Post.find(post)
+      end
+    else
+      @evaluations = Evaluation.where(tournament_id: params[:tournament_id], user_id: current_user.id).rank(:row_order)
+    end
   end
 
   def update_row_order

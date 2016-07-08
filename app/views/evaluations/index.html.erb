@@ -1,34 +1,70 @@
-<table class="table table-bordered table-striped" id="sortable">
-  <thead>
-    <tr>
-      <th>
-        Title
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @evaluations.each do |eval| %>
-      <tr data-item-id=<%= "#{eval.id}" %> class="item">
-        <td>
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="heading<%=eval.id%>">
-                <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=eval.id%>" aria-expanded="true" aria-controls="collapse<%=eval.id%>">
-                    <%=eval.post.user.nickname%>
-                  </a>
-                </h4>
+<%if @tournament.closed?%>
+  <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>
+            Title
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="heading<%=post.id%>">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=post.id%>" aria-expanded="true" aria-controls="collapse<%=post.id%>">
+                        <%=post.user.nickname%>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse<%=post.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=post.id%>">
+                    <div class="panel-body">
+                      <%=post.content.html_safe%>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div id="collapse<%=eval.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=eval.id%>">
-                <div class="panel-body">
-                  <%=eval.post.content.html_safe%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<%else%>
+  <table class="table table-bordered table-striped" id="sortable">
+    <thead>
+      <tr>
+        <th>
+          Title
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @evaluations.each do |eval| %>
+        <tr data-item-id=<%= "#{eval.id}" %> class="item">
+          <td>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading<%=eval.id%>">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=eval.id%>" aria-expanded="true" aria-controls="collapse<%=eval.id%>">
+                      <%=eval.post.user.nickname%>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse<%=eval.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=eval.id%>">
+                  <div class="panel-body">
+                    <%=eval.post.content.html_safe%>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%end%>
 

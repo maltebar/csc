@@ -1,17 +1,40 @@
-<%= form_for(@tournament) do |f| %>
-  <% if @tournament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+<%= form_for(@tournament, :html=>{:class=>"form-horizontal"}) do |f| %>
 
-      <ul>
-      <% @tournament.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <div class="form-group">
+            <%= f.label :assignment_id, class:'control-label col-md-2' %>
+            <%= f.collection_select :assignment_id, Assignment.order(:title),:id,:title %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :gd_percent, "Weight of Good Design", class:'control-label col-md-2' %>
+            <%= f.text_field :gd_percent%>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :ge_percent, "Weight of Good Examples", class:'control-label col-md-2' %>
+            <%= f.text_field :ge_percent%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :ww_percent, "Weight of Well Written", class:'control-label col-md-2' %>
+            <%= f.text_field :ww_percent%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :gr_percent, "Weight of Good Reflection", class:'control-label col-md-2' %>
+            <%= f.text_field :gr_percent%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :read_percent, "Weight of Reads", class:'control-label col-md-2' %>
+            <%= f.text_field :read_percent%>
+          </div>
+
+           <div class="form-group">
+            <%= f.label :closed, class:'control-label col-md-2' %>
+            <%= f.check_box :closed, {}, true, false%>
+          </div>
+
+          <%= f.submit "Save", class: 'btn btn-primary' %>
+
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

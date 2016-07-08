@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20160708185956) do
     t.integer  "ww_percent",    limit: 4
     t.integer  "gr_percent",    limit: 4
     t.integer  "read_percent",  limit: 4
+    t.boolean  "closed"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

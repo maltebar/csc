@@ -7,6 +7,7 @@ class CreateTournaments < ActiveRecord::Migration
     	t.integer :ww_percent
     	t.integer :gr_percent
     	t.integer :read_percent
+      t.boolean :closed
 
       t.timestamps null: false
     end
