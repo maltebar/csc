@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div class="col-md-8">
 	<div class="page-header">
 		<h1><%= @assignment.title %>		
 			<%if @post.user == current_user && @assignment.final_due > Time.zone.now%>
@@ -79,7 +79,7 @@
 	</div>
 </div>
 
-<div class="col-md-3 commentbar" style="height:100%;">
+<div class="col-md-4 commentbar" style="height:100%;">
 	<%if @post.user.group == current_user.group%>
 		<div class="page-header">
 			<span style="display: inline;">
