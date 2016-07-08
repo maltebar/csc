@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
     	t.text :content
     	t.integer :user_id
     	t.integer :assignment_id
+    	t.boolean :gold_star
 
       t.timestamps null: false
     end

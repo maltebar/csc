@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160706205712) do
     t.text     "content",       limit: 65535
     t.integer  "user_id",       limit: 4
     t.integer  "assignment_id", limit: 4
+    t.boolean  "gold_star"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end

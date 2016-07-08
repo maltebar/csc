@@ -16,6 +16,7 @@
 								<tr>
 									<th style="text-align:center">Post Author</th>
 									<th style="text-align:center">Group</th>
+									<th style="text-align:center">Gold Star?</th>
 									<th style="text-align:center">Good Design</th>
 									<th style="text-align:center">Good Use of Examples</th>
 									<th style="text-align:center">Well-Written</th>
@@ -35,6 +36,13 @@
 										</td>
 										<td style="text-align:center">
 											<%=post.user.group_id%>
+										</td>
+										<td style="text-align:center">
+											<%if post.gold_star?%>
+												Yes
+											<%else%>
+												No
+											<%end%>
 										</td>
 										<td style="text-align:center">
 											<%=Badge.where(post_id: post.id, name: "good design").count%>
