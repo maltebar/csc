@@ -1,0 +1,95 @@
+<div class='page-header clearfix'>
+  <h1>
+    <span>Tournaments</span>
+    <%if current_user.admin?%>
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newTournamentForm">
+        Create new tournament
+      </button>
+    <%end%>
+  </h1>
+</div>
+
+
+<div style="height: 500px; overflow: scroll;">
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Assignment Title</th>
+      <%if current_user.admin?%>
+        <th>Edit</th>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tournaments.each do |tournament| %>
+      <tr>
+        <td>
+          <%= link_to tournament.assignment.title, {:controller => "evaluations", :action => "index", :tournament_id => tournament.id }, :class=> "btn btn-link"%>
+        </td>
+            
+        <% if current_user.admin? %>
+          <td>
+             <%= link_to 'Edit', edit_tournament_path(tournament) %><br>
+             <%= link_to 'Delete', tournament, method: :delete %>
+          </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+</table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newTournamentForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">New Tournament</h2>
+      </div>
+      <div class="modal-body">
+        <% @tournament=Tournament.new %>
+
+      <%= form_for(@tournament, :html=>{:class=>"form-horizontal"}) do |f| %>
+
+          <div class="form-group">
+            <%= f.label :assignment_id, class:'control-label col-md-2' %>
+            <%= f.collection_select :assignment_id, Assignment.order(:title),:id,:title %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :gd_percent, "Weight of Good Design", class:'control-label col-md-2' %>
+            <%= f.text_field :gd_percent%>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :ge_percent, "Weight of Good Examples", class:'control-label col-md-2' %>
+            <%= f.text_field :ge_percent%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :ww_percent, "Weight of Well Written", class:'control-label col-md-2' %>
+            <%= f.text_field :ww_percent%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :gr_percent, "Weight of Good Reflection", class:'control-label col-md-2' %>
+            <%= f.text_field :gr_percent%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :read_percent, "Weight of Reads", class:'control-label col-md-2' %>
+            <%= f.text_field :read_percent%>
+          </div>
+    
+</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Save", class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

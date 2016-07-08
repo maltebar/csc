@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :evaluations do
+    post :update_row_order, on: :collection
+  end
+
+  resources :tournaments
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   resources :forum_post_replies

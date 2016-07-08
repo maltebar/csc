@@ -14,6 +14,7 @@
 //= require tether
 //= require bootstrap
 //= require jquery_ujs
+//= require jquery-ui
 //= require sortable.js
 //= require turbolinks
 //= require ahoy
