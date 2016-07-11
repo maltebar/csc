@@ -2,6 +2,37 @@ class Tournament < ActiveRecord::Base
 	belongs_to :assignment
 	has_many :evaluations
 	after_create :make_evals
+	after_create :notify
+	after_save :notify_closed
+
+	def notify
+		url = Rails.application.routes.url_helpers.tournaments_path
+		@users = User.all 
+		@users.each do |u| 
+  			Notification.create(recipient: u, action: "New Tournament Posted", url: url)
+	  		if (u.notificationFrequency == 1 || u.admin == true)
+			    # use nil as parameter if you want link to be homepage, can also use url 
+			    # change title of email by changing 'Notifications'
+	    		Notifier.new_notification(u, nil, 'Notifications').deliver_now
+	  		end 
+		end
+	end
+
+	def notify_closed
+		if self.closed?
+			url = Rails.application.routes.url_helpers.evaluations_path(:tournament_id => self.id)
+			@users = User.all 
+			@users.each do |u| 
+	  			Notification.create(recipient: u, action: "Results from Tournament Have Been Posted", url: url)
+		  		if (u.notificationFrequency == 1 || u.admin == true)
+				    # use nil as parameter if you want link to be homepage, can also use url 
+				    # change title of email by changing 'Notifications'
+		    		Notifier.new_notification(u, nil, 'Notifications').deliver_now
+		  		end 
+			end
+		end
+	end
+
 
 	def make_evals
 		@posts = find_top_10_posts(self)
