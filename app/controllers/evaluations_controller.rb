@@ -23,6 +23,9 @@ class EvaluationsController < ApplicationController
     else
       @evaluations = Evaluation.where(tournament_id: params[:tournament_id], user_id: current_user.id).rank(:row_order)
     end
+    unless current_user.admin?
+      ahoy.track "Visited Tournament Page", tournament_id: @tournament.id
+    end
   end
 
   def update_row_order
