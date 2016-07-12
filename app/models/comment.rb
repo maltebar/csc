@@ -17,7 +17,7 @@ class Comment < ActiveRecord::Base
 			if u == @post.user && @post.user != self.user
 				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Commented on Your Post for Assignment "+@post.assignment.title, url: url)
 			elsif u != @post.user && @post.user != self.user
-  				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Commented on "+self.user.nickname+"'s Post for Assignment "+@post.assignment.title, url: url)
+  				Notification.create(recipient: u, creator: User.find(self.user_id), action: self.user.nickname+" Commented on "+@post.user.nickname+"'s Post for Assignment "+@post.assignment.title, url: url)
 	  		end
 	  		if (u.notificationFrequency == 1 || u.admin == true)
 			    # use nil as parameter if you want link to be homepage, can also use url 
