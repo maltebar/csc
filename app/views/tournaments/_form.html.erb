@@ -7,27 +7,27 @@
 
           <div class="form-group">
             <%= f.label :gd_percent, "Weight of Good Design", class:'control-label col-md-2' %>
-            <%= f.text_field :gd_percent%>
+            <%= f.text_field :gd_percent, :value => @tournament.gd_percent.nil? ? 50 : @tournament.gd_percent%>
           </div>
           
           <div class="form-group">
             <%= f.label :ge_percent, "Weight of Good Examples", class:'control-label col-md-2' %>
-            <%= f.text_field :ge_percent%>
+            <%= f.text_field :ge_percent, :value => @tournament.ge_percent.nil? ? 10 : @tournament.ge_percent%>
           </div>
 
           <div class="form-group">
             <%= f.label :ww_percent, "Weight of Well Written", class:'control-label col-md-2' %>
-            <%= f.text_field :ww_percent%>
+            <%= f.text_field :ww_percent, :value => @tournament.ww_percent.nil? ? 15 : @tournament.ww_percent%>
           </div>
 
           <div class="form-group">
             <%= f.label :gr_percent, "Weight of Good Reflection", class:'control-label col-md-2' %>
-            <%= f.text_field :gr_percent%>
+            <%= f.text_field :gr_percent, :value => @tournament.gr_percent.nil? ? 15 : @tournament.gr_percent%>
           </div>
 
           <div class="form-group">
             <%= f.label :read_percent, "Weight of Reads", class:'control-label col-md-2' %>
-            <%= f.text_field :read_percent%>
+            <%= f.text_field :read_percent, :value => @tournament.read_percent.nil? ? 10 : @tournament.read_percent%>
           </div>
 
            <div class="form-group">

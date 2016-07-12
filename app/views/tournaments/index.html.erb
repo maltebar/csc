@@ -41,7 +41,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="newTournamentForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -50,51 +50,8 @@
       <div class="modal-body">
         <% @tournament=Tournament.new %>
 
-      <%= form_for(@tournament, :html=>{:class=>"form-horizontal"}) do |f| %>
-
-          <div class="form-group">
-            <%= f.label :assignment_id, class:'control-label col-md-2' %>
-            <%= f.collection_select :assignment_id, Assignment.order(:title),:id,:title %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :gd_percent, "Weight of Good Design", class:'control-label col-md-2' %>
-            <%= f.text_field :gd_percent%>
-          </div>
-          
-          <div class="form-group">
-            <%= f.label :ge_percent, "Weight of Good Examples", class:'control-label col-md-2' %>
-            <%= f.text_field :ge_percent%>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :ww_percent, "Weight of Well Written", class:'control-label col-md-2' %>
-            <%= f.text_field :ww_percent%>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :gr_percent, "Weight of Good Reflection", class:'control-label col-md-2' %>
-            <%= f.text_field :gr_percent%>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :read_percent, "Weight of Reads", class:'control-label col-md-2' %>
-            <%= f.text_field :read_percent%>
-          </div>
-
-           <div class="form-group">
-            <%= f.label :closed, class:'control-label col-md-2' %>
-            <%= f.check_box :closed, {}, "true", "false"%>
-          </div>
-    
-</div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= f.submit "Save", class: 'btn btn-primary' %>
+        <%=render 'form'%>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
 </div>
