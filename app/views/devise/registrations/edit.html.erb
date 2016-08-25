@@ -3,15 +3,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname %>
-  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -40,11 +31,11 @@
   <div class="field">
     <h2>Notification Frequency</h2>
     <p>Select from one of the options below:</p>
-    <%= f.radio_button :notificationFrequency, nil %>
+    <%= f.radio_button :notificationFrequency, 0 %>
     <%= f.label("I do not want to receive notifications by email") %></br>
     <%= f.radio_button :notificationFrequency, 1 %>
-    <%= f.label("I want to receive a single notification by email every time a new notifcation appears on my account") %></br>
-    <%= f.radio_button :notificationFrequency, 2 %>
+    <%= f.label("I want to receive a single notification by email every time a new notification appears on my account") %></br>
+    <%= f.radio_button :notificationFrequency, 2%>
     <%= f.label("I want to receive a list of notifications for my account by email every 24 hours") %></br>
   </div>
 
@@ -54,8 +45,4 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
